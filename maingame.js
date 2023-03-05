@@ -89,6 +89,7 @@ function balloon(x, y, rotation) {
   ellipse(x + 20, y + 100, 15, 20);
   pop();
 }
+
 function draw() {
   balloon(x, y, rotation);
 
@@ -102,6 +103,11 @@ function draw() {
     speed = 0;
   }
 }
+
+//sun//
+fill(199, 0, 57);
+noStroke();
+ellipse(x, y, 100, 110);
 
 //ground//
 fill(82, 55, 48);
