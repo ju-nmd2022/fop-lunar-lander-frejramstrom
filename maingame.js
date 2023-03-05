@@ -97,9 +97,35 @@ function tree(x, y) {
 }
 function stones(x, y) {
   fill(145, 142, 133);
-  ellipse;
+  noStroke();
+  ellipse(x + 100, y + 425, 30, 30);
+
+  fill(165, 162, 153);
+  noStroke();
+  ellipse(x + 110, y + 430, 20, 20);
+
+  fill(125, 122, 113);
+  noStroke();
+  ellipse(x + 90, y + 430, 20, 20);
 }
+stones(10, 10);
+stones(100, 10);
+stones(200, 10);
+stones(300, 10);
+stones(400, 10);
 tree(10, 100);
 tree(40, 100);
 tree(70, 100);
-tree(100, 100);
+tree(140, 100);
+tree(170, 100);
+tree(240, 100);
+tree(270, 100);
+tree(330, 100);
+tree(360, 100);
+tree(440, 100);
+tree(470, 100);
+tree(540, 100);
+tree(570, 100);
+tree(600, 100);
+
+//Ground checkered flag//
