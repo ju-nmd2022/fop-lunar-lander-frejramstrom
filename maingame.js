@@ -84,3 +84,22 @@ ellipse(x + 20, y + 100, 15, 20);
 
 //ground//
 rect(x - 100, y + 350, 800, 40);
+
+//trees + stones//
+function tree(x, y) {
+  fill(70, 31, 0);
+  rect(x - 5, y + 330, 10, 20);
+  fill(20, 51, 6);
+  noStroke(0);
+  triangle(x - 10, y + 320, x, y + 300, x + 10, y + 320);
+  triangle(x - 12, y + 330, x, y + 300, x + 12, y + 330);
+  triangle(x - 14, y + 340, x, y + 300, x + 14, y + 340);
+}
+function stones(x, y) {
+  fill(145, 142, 133);
+  ellipse;
+}
+tree(10, 100);
+tree(40, 100);
+tree(70, 100);
+tree(100, 100);
