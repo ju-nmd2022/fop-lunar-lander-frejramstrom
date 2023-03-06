@@ -117,8 +117,11 @@ function draw() {
     yBalloon = yBalloon + velocity;
     velocity = velocity + acceleration;
   }
-  if (yBalloon > 290 && x > 640) {
+  if (yBalloon > 288 && x < 630) {
     isGameActive = false;
+  }
+  if (yBalloon > 288 && x > 631) {
+    isGameActive = true;
   }
 }
 
