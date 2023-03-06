@@ -221,18 +221,29 @@ function gameScreen() {
 }
 function startScreen() {
   background(46, 68, 130);
-  rect(200, 200, 200);
+  textSize(30);
+  text("Flying Balloon Game!", 250, 200);
+  text("Press SpaceBar to play again!", 200, 250);
+  text("Control the Balloon with < ^ >", 310, 300);
+  text("Land smoothly on the checkers ground", 200, 350);
+  text("If you try to land in forest, you will crash!", 310, 400);
+  text("Press SpaceBar to play, Good Luck!", 200, 450);
 }
 
 function winScreen() {
   background(1, 50, 32);
+  textSize(30);
+  text("You won!", 310, 200);
+  text("Press SpaceBar to play again!", 200, 250);
 }
+
 function lostScreen() {
   background(255, 0, 0);
-  textSize(50);
-  text("Hej!", 500, 200);
+  textSize(30);
+  text("You crashed!", 310, 200);
+  text("Press SpaceBar to play again!", 200, 250);
 }
-let state = "gameScreen";
+let state = "startScreen";
 
 function resetGame() {
   if (keyIsDown(32)) {
