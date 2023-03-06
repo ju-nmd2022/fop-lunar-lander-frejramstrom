@@ -4,13 +4,17 @@ let yBalloon = 100;
 let yBackground = 100;
 let y = 100;
 let rotation = 0;
-let speed = 0;
+let speedX = 0;
+let speedY = 5;
+let velocity = 1;
+let acceleration = 0.2;
+let isGameActive = true;
+let s = 1;
 
 //background//
 
 function balloon(x, y) {
   push();
-  translate(x, y);
   //Fire Balloon//
 
   fill(252, 100, 0);
@@ -96,16 +100,25 @@ function draw() {
   gameBackground(xBackground, y);
   balloon(xBalloon, yBalloon);
 
-  xBalloon = xBalloon + speed;
-
+  xBalloon = xBalloon + speedX;
+  yBalloon = yBalloon + speedY;
   if (keyIsDown(39)) {
-    speed = 5;
+    speedX = 10;
   } else if (keyIsDown(37)) {
-    speed = -5;
+    speedX = -10;
   } else if (keyIsDown(38)) {
-    speed = y;
+    velocity = velocity - 0.5;
   } else {
-    speed = 0;
+    speedX = 0;
+    speedY = 0.1;
+  }
+  if (isGameActive) {
+    xBalloon = xBalloon - 0.1;
+    yBalloon = yBalloon + velocity;
+    velocity = velocity + acceleration;
+  }
+  if (yBalloon > 290 && x > 640) {
+    isGameActive = false;
   }
 }
 
