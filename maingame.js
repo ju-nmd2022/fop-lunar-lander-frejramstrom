@@ -223,7 +223,7 @@ function startScreen() {
   background(46, 68, 130);
   textSize(30);
   text("Flying Balloon Game!", 250, 100);
-  text("Press SpaceBar to play again!", 200, 150);
+  text("Press SpaceBar to play!", 200, 150);
   text("Control the Balloon with < ^ >", 210, 200);
   text("Land smoothly on the checkers ground", 150, 250);
   text("If you try to land in forest, you will crash!", 150, 300);
