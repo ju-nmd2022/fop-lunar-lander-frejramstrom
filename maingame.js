@@ -229,6 +229,8 @@ function winScreen() {
 }
 function lostScreen() {
   background(255, 0, 0);
+  textSize(50);
+  text("Hej!", 500, 200);
 }
 let state = "gameScreen";
 
