@@ -1,17 +1,16 @@
 function setup() {
   createCanvas(800, 480);
-  frameRate();
+  frameRate(35);
 }
 let xBalloon = 100;
 let xBackground = 100;
 let yBalloon = 100;
 let yBackground = 100;
 let y = 100;
-let rotation = 0;
 let speedX = 0;
 let speedY = 5;
 let velocity = 1;
-let acceleration = 0.2;
+
 let isGameActive = true;
 
 function balloon(x, y) {
@@ -60,7 +59,7 @@ function balloon(x, y) {
   ellipse(x - 20, y, 2, 2);
   ellipse(x - 10, y, 2, 2);
 
-  //Lines connecting to Balloon from left side//
+  //Lines connecting to Balloon from right side//
   strokeWeight(2);
   stroke(255, 195, 0);
   line(x + 40, y, x + 30, y + 80);
@@ -99,7 +98,7 @@ function balloon(x, y) {
 }
 //speed of balloon//
 function gameScreen() {
-  gameBackground(xBackground, y);
+  gameBackground(xBackground, yBackground);
   balloon(xBalloon, yBalloon);
 
   xBalloon = xBalloon + speedX;
