@@ -1,3 +1,7 @@
+function setup() {
+  createCanvas(800, 480);
+  frameRate();
+}
 let xBalloon = 100;
 let xBackground = 100;
 let yBalloon = 100;
@@ -9,8 +13,6 @@ let speedY = 5;
 let velocity = 1;
 let acceleration = 0.2;
 let isGameActive = true;
-
-//background//
 
 function balloon(x, y) {
   push();
@@ -130,7 +132,7 @@ function gameBackground(x, y) {
   background(46, 68, 130);
   fill(253, 184, 19);
   noStroke();
-  ellipse(x + 620, y - 60, 150, 150);
+  ellipse(x + 660, y - 60, 150, 150);
 
   //ground//
   fill(82, 55, 48);
@@ -198,9 +200,23 @@ function gameBackground(x, y) {
   goalWhite(x + 40, y);
   goalWhite(x + 60, y);
   goalWhite(x + 80, y);
+  goalWhite(x + 100, y);
+  goalWhite(x + 120, y);
+  goalWhite(x + 140, y);
   goalBlack(x, y);
   goalBlack(x + 20, y);
   goalBlack(x + 40, y);
   goalBlack(x + 60, y);
   goalBlack(x + 80, y);
+  goalBlack(x + 100, y);
+  goalBlack(x + 120, y);
+  goalBlack(x + 140, y);
 }
+
+function startScreen() {}
+
+function gameScreen() {}
+
+function winScreen() {}
+
+function lostScreen() {}
