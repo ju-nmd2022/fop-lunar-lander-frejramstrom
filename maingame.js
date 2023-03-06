@@ -102,10 +102,13 @@ function draw() {
     speed = 5;
   } else if (keyIsDown(37)) {
     speed = -5;
+  } else if (keyIsDown(38)) {
+    speed = y;
   } else {
     speed = 0;
   }
 }
+
 //sun//
 function gameBackground(x, y) {
   background(46, 68, 130);
