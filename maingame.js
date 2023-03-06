@@ -126,11 +126,8 @@ function gameScreen() {
   }
   if (yBalloon > 629 && xBalloon > 631) {
     isGameActive = false;
-    if (speedY > 8) {
-      speedY = 1;
-      acceleration = 0.2;
+    if (speedY > 7 || velocity < 7 || yBalloon > 100) {
       state = "lostScreen";
-      yBalloon = 100;
     } else {
       state = "winScreen";
     }
