@@ -98,140 +98,171 @@ function balloon(x, y) {
   pop();
 }
 //speed of balloon//
-gameBackground(xBackground, y);
-balloon(xBalloon, yBalloon);
+function gameScreen() {
+  gameBackground(xBackground, y);
+  balloon(xBalloon, yBalloon);
 
-xBalloon = xBalloon + speedX;
-yBalloon = yBalloon + speedY;
+  xBalloon = xBalloon + speedX;
+  yBalloon = yBalloon + speedY;
 
-if (isGameActive) {
-  if (keyIsDown(39)) {
-    speedX = 3;
-  } else if (keyIsDown(37)) {
-    speedX = -3;
-  } else if (keyIsDown(38)) {
-    velocity = velocity - 0.5;
-  } else {
-    speedX = 0;
-    speedY = 0.1;
+  if (isGameActive) {
+    if (keyIsDown(39)) {
+      speedX = 3;
+    } else if (keyIsDown(37)) {
+      speedX = -3;
+    } else if (keyIsDown(38)) {
+      velocity = velocity - 0.5;
+    } else {
+      speedX = 0;
+      speedY = 0.1;
+    }
+    xBalloon = xBalloon - 0.1;
+    yBalloon = yBalloon + velocity;
+    velocity = velocity + acceleration;
   }
-  xBalloon = xBalloon - 0.1;
-  yBalloon = yBalloon + velocity;
-  velocity = velocity + acceleration;
-}
-if (yBalloon > 560 && xBalloon < 630) {
-  isGameActive = false;
-}
-if (yBalloon > 629 && xBalloon > 631) {
-  isGameActive = false;
-}
-if (yBalloon >= 629 && speed > 8) {
-  speed = 1;
-  acceleration = 0.2;
-  state = "lostScreen";
-  yBalloon = 100;
-}
-
-//sun//
-function gameBackground(x, y) {
-  background(46, 68, 130);
-  fill(253, 184, 19);
-  noStroke();
-  ellipse(x + 660, y - 60, 150, 150);
-
-  //ground//
-  fill(82, 55, 48);
-  noStroke();
-  rect(x - 100, y + 350, 800, 40);
-
-  //trees + stones//
-  function tree(x, y) {
-    fill(70, 31, 0);
-    rect(x - 5, y + 330, 10, 20);
-    fill(20, 51, 6);
-    noStroke(0);
-    triangle(x - 10, y + 320, x, y + 300, x + 10, y + 320);
-    triangle(x - 12, y + 330, x, y + 300, x + 12, y + 330);
-    triangle(x - 14, y + 340, x, y + 300, x + 14, y + 340);
+  if (yBalloon > 560 && xBalloon < 630) {
+    isGameActive = false;
+    state = "lostScreen";
   }
-  function stones(x, y) {
-    fill(145, 142, 133);
-    noStroke();
-    ellipse(x + 100, y + 425, 30, 30);
-
-    fill(165, 162, 153);
-    noStroke();
-    ellipse(x + 110, y + 430, 20, 20);
-
-    fill(125, 122, 113);
-    noStroke();
-    ellipse(x + 90, y + 430, 20, 20);
-  }
-  stones(10, 10);
-  stones(100, 10);
-  stones(200, 10);
-  stones(300, 10);
-  stones(400, 10);
-  tree(10, 100);
-  tree(40, 100);
-  tree(70, 100);
-  tree(140, 100);
-  tree(170, 100);
-  tree(240, 100);
-  tree(270, 100);
-  tree(330, 100);
-  tree(360, 100);
-  tree(440, 100);
-  tree(470, 100);
-  tree(540, 100);
-  tree(570, 100);
-  tree(600, 100);
-  tree(620, 100);
-
-  //Ground checkered flag//
-  function goalWhite(x, y) {
-    fill(255, 255, 255);
-    noStroke();
-    rect(x + 540, y + 350, 10, 10);
+  if (yBalloon > 629 && xBalloon > 631) {
+    isGameActive = false;
+    if (speedY > 8) {
+      speedY = 1;
+      acceleration = 0.2;
+      state = "lostScreen";
+      yBalloon = 100;
+    } else {
+      state = "winScreen";
+    }
   }
 
-  function goalBlack(x, y) {
-    fill(0, 0, 0);
+  //sun//
+  function gameBackground(x, y) {
+    background(46, 68, 130);
+    fill(253, 184, 19);
     noStroke();
-    rect(x + 550, y + 350, 10, 10);
-  }
-  goalWhite(x, y);
-  goalWhite(x + 20, y);
-  goalWhite(x + 40, y);
-  goalWhite(x + 60, y);
-  goalWhite(x + 80, y);
-  goalWhite(x + 100, y);
-  goalWhite(x + 120, y);
-  goalWhite(x + 140, y);
-  goalBlack(x, y);
-  goalBlack(x + 20, y);
-  goalBlack(x + 40, y);
-  goalBlack(x + 60, y);
-  goalBlack(x + 80, y);
-  goalBlack(x + 100, y);
-  goalBlack(x + 120, y);
-  goalBlack(x + 140, y);
-}
+    ellipse(x + 660, y - 60, 150, 150);
 
+    //ground//
+    fill(82, 55, 48);
+    noStroke();
+    rect(x - 100, y + 350, 800, 40);
+
+    //trees + stones//
+    function tree(x, y) {
+      fill(70, 31, 0);
+      rect(x - 5, y + 330, 10, 20);
+      fill(20, 51, 6);
+      noStroke(0);
+      triangle(x - 10, y + 320, x, y + 300, x + 10, y + 320);
+      triangle(x - 12, y + 330, x, y + 300, x + 12, y + 330);
+      triangle(x - 14, y + 340, x, y + 300, x + 14, y + 340);
+    }
+    function stones(x, y) {
+      fill(145, 142, 133);
+      noStroke();
+      ellipse(x + 100, y + 425, 30, 30);
+
+      fill(165, 162, 153);
+      noStroke();
+      ellipse(x + 110, y + 430, 20, 20);
+
+      fill(125, 122, 113);
+      noStroke();
+      ellipse(x + 90, y + 430, 20, 20);
+    }
+    stones(10, 10);
+    stones(100, 10);
+    stones(200, 10);
+    stones(300, 10);
+    stones(400, 10);
+    tree(10, 100);
+    tree(40, 100);
+    tree(70, 100);
+    tree(140, 100);
+    tree(170, 100);
+    tree(240, 100);
+    tree(270, 100);
+    tree(330, 100);
+    tree(360, 100);
+    tree(440, 100);
+    tree(470, 100);
+    tree(540, 100);
+    tree(570, 100);
+    tree(600, 100);
+    tree(620, 100);
+
+    //Ground checkered flag//
+    function goalWhite(x, y) {
+      fill(255, 255, 255);
+      noStroke();
+      rect(x + 540, y + 350, 10, 10);
+    }
+
+    function goalBlack(x, y) {
+      fill(0, 0, 0);
+      noStroke();
+      rect(x + 550, y + 350, 10, 10);
+    }
+    goalWhite(x, y);
+    goalWhite(x + 20, y);
+    goalWhite(x + 40, y);
+    goalWhite(x + 60, y);
+    goalWhite(x + 80, y);
+    goalWhite(x + 100, y);
+    goalWhite(x + 120, y);
+    goalWhite(x + 140, y);
+    goalBlack(x, y);
+    goalBlack(x + 20, y);
+    goalBlack(x + 40, y);
+    goalBlack(x + 60, y);
+    goalBlack(x + 80, y);
+    goalBlack(x + 100, y);
+    goalBlack(x + 120, y);
+    goalBlack(x + 140, y);
+  }
+}
 function startScreen() {
   background(46, 68, 130);
-}
-
-function gameScreen() {
-  background(46, 68, 130);
+  rect(200, 200, 200);
 }
 
 function winScreen() {
-  background(46, 68, 130);
+  background(1, 50, 32);
 }
-
 function lostScreen() {
-  background(46, 68, 130);
+  background(255, 0, 0);
+}
+let state = "gameScreen";
+
+function resetGame() {
+  if (keyIsDown(32)) {
+    state = "gameScreen";
+  }
+  xBalloon = 100;
+  xBackground = 100;
+  yBalloon = 100;
+  yBackground = 100;
+  y = 100;
+  rotation = 0;
+  speedX = 0;
+  speedY = 5;
+  velocity = 1;
+  acceleration = 0.2;
+  isGameActive = true;
+}
+function draw() {
+  if (state === "startScreen") {
+    startScreen();
+  } else if (state === "gameScreen") {
+    gameScreen();
+  } else if (state === "winScreen") {
+    winScreen();
+    resetGame();
+  } else if (state === "lostScreen") {
+    lostScreen();
+    resetGame();
+  }
 }
 
 // DRAW -> kolla states och anropa funktioner , mouseclick repeat mousepressed xy
