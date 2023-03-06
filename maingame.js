@@ -222,12 +222,12 @@ function gameScreen() {
 function startScreen() {
   background(46, 68, 130);
   textSize(30);
-  text("Flying Balloon Game!", 250, 200);
-  text("Press SpaceBar to play again!", 200, 250);
-  text("Control the Balloon with < ^ >", 310, 300);
-  text("Land smoothly on the checkers ground", 200, 350);
-  text("If you try to land in forest, you will crash!", 310, 400);
-  text("Press SpaceBar to play, Good Luck!", 200, 450);
+  text("Flying Balloon Game!", 250, 100);
+  text("Press SpaceBar to play again!", 200, 150);
+  text("Control the Balloon with < ^ >", 210, 200);
+  text("Land smoothly on the checkers ground", 150, 250);
+  text("If you try to land in forest, you will crash!", 150, 300);
+  text("Press SpaceBar to play, Good Luck!", 170, 350);
 }
 
 function winScreen() {
@@ -264,6 +264,7 @@ function resetGame() {
 function draw() {
   if (state === "startScreen") {
     startScreen();
+    resetGame();
   } else if (state === "gameScreen") {
     gameScreen();
   } else if (state === "winScreen") {
