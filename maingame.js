@@ -98,35 +98,40 @@ function balloon(x, y) {
   pop();
 }
 //speed of balloon//
-function draw() {
-  gameBackground(xBackground, y);
-  balloon(xBalloon, yBalloon);
+gameBackground(xBackground, y);
+balloon(xBalloon, yBalloon);
 
-  xBalloon = xBalloon + speedX;
-  yBalloon = yBalloon + speedY;
+xBalloon = xBalloon + speedX;
+yBalloon = yBalloon + speedY;
 
-  if (isGameActive) {
-    if (keyIsDown(39)) {
-      speedX = 3;
-    } else if (keyIsDown(37)) {
-      speedX = -3;
-    } else if (keyIsDown(38)) {
-      velocity = velocity - 0.5;
-    } else {
-      speedX = 0;
-      speedY = 0.1;
-    }
-    xBalloon = xBalloon - 0.1;
-    yBalloon = yBalloon + velocity;
-    velocity = velocity + acceleration;
+if (isGameActive) {
+  if (keyIsDown(39)) {
+    speedX = 3;
+  } else if (keyIsDown(37)) {
+    speedX = -3;
+  } else if (keyIsDown(38)) {
+    velocity = velocity - 0.5;
+  } else {
+    speedX = 0;
+    speedY = 0.1;
   }
-  if (yBalloon > 560 && xBalloon < 630) {
-    isGameActive = false;
-  }
-  if (yBalloon > 629 && xBalloon > 631) {
-    isGameActive = false;
-  }
+  xBalloon = xBalloon - 0.1;
+  yBalloon = yBalloon + velocity;
+  velocity = velocity + acceleration;
 }
+if (yBalloon > 560 && xBalloon < 630) {
+  isGameActive = false;
+}
+if (yBalloon > 629 && xBalloon > 631) {
+  isGameActive = false;
+}
+if (yBalloon >= 629 && speed > 8) {
+  speed = 1;
+  acceleration = 0.2;
+  state = "lostScreen";
+  yBalloon = 100;
+}
+
 //sun//
 function gameBackground(x, y) {
   background(46, 68, 130);
@@ -213,10 +218,20 @@ function gameBackground(x, y) {
   goalBlack(x + 140, y);
 }
 
-function startScreen() {}
+function startScreen() {
+  background(46, 68, 130);
+}
 
-function gameScreen() {}
+function gameScreen() {
+  background(46, 68, 130);
+}
 
-function winScreen() {}
+function winScreen() {
+  background(46, 68, 130);
+}
 
-function lostScreen() {}
+function lostScreen() {
+  background(46, 68, 130);
+}
+
+// DRAW -> kolla states och anropa funktioner , mouseclick repeat mousepressed xy
