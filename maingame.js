@@ -126,13 +126,13 @@ function gameScreen() {
   }
   if (yBalloon > 629 && xBalloon > 631) {
     isGameActive = false;
-    if (speedY > 7 || velocity < 7 || yBalloon > 100) {
+    if (velocity > 3) {
       state = "lostScreen";
     } else {
       state = "winScreen";
     }
   }
-
+  console.log(velocity);
   //sun//
   function gameBackground(x, y) {
     background(46, 68, 130);
