@@ -6,13 +6,13 @@ let xBalloon = 100;
 let xBackground = 100;
 let yBalloon = 100;
 let yBackground = 100;
-let y = 100;
 let speedX = 0;
 let speedY = 5;
 let velocity = 1;
-
 let isGameActive = true;
-
+const rightArrow = 39;
+const leftArrow = 37;
+const upArrow = 38;
 function balloon(x, y) {
   push();
   scale(0.6);
@@ -101,15 +101,12 @@ function gameScreen() {
   gameBackground(xBackground, yBackground);
   balloon(xBalloon, yBalloon);
 
-  xBalloon = xBalloon + speedX;
-  yBalloon = yBalloon + speedY;
-
   if (isGameActive) {
-    if (keyIsDown(39)) {
+    if (keyIsDown(rightArrow)) {
       speedX = 3;
-    } else if (keyIsDown(37)) {
+    } else if (keyIsDown(leftArrow)) {
       speedX = -3;
-    } else if (keyIsDown(38)) {
+    } else if (keyIsDown(upArrow)) {
       velocity = velocity - 0.5;
     } else {
       speedX = 0;
@@ -118,6 +115,8 @@ function gameScreen() {
     xBalloon = xBalloon - 0.1;
     yBalloon = yBalloon + velocity;
     velocity = velocity + acceleration;
+    xBalloon = xBalloon + speedX;
+    yBalloon = yBalloon + speedY;
   }
   if (yBalloon > 560 && xBalloon < 630) {
     isGameActive = false;
@@ -131,7 +130,6 @@ function gameScreen() {
       state = "winScreen";
     }
   }
-  console.log(velocity);
   //sun//
   function gameBackground(x, y) {
     background(46, 68, 130);
@@ -274,5 +272,3 @@ function draw() {
     resetGame();
   }
 }
-
-// DRAW -> kolla states och anropa funktioner , mouseclick repeat mousepressed xy
