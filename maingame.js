@@ -18,6 +18,10 @@ const startScreenState = "startScreen";
 const winScreenState = "winScreen";
 const lostScreenState = "lostScreen";
 const gameScreenState = "gameScreen";
+const xPosTrees = 630;
+const yPosTrees = 560;
+const xPosGoal = 631;
+const yPosGoal = 629;
 function balloon(x, y) {
   push();
   scale(0.6);
@@ -123,11 +127,11 @@ function gameScreen() {
     xBalloonAxis = xBalloonAxis + speedBalloonX;
     yBalloonAxis = yBalloonAxis + speedBalloonY;
   }
-  if (yBalloonAxis > 560 && xBalloonAxis < 630) {
+  if (yBalloonAxis > yPosTrees && xBalloonAxis < xPosTrees) {
     isGameActive = false;
     state = "lostScreen";
   }
-  if (yBalloonAxis > 629 && xBalloonAxis > 631) {
+  if (yBalloonAxis > yPosGoal && xBalloonAxis > xPosGoal) {
     isGameActive = false;
     if (velocity > 3) {
       state = "lostScreen";
@@ -245,7 +249,7 @@ function lostScreen() {
   text("You crashed!", 310, 200);
   text("Press SpaceBar to play again!", 200, 250);
 }
-let state = winScreenState;
+let state = startScreenState;
 
 function resetGame() {
   if (keyIsDown(spaceBar)) {
