@@ -109,7 +109,7 @@ function balloon(x, y) {
   ellipse(x + 20, y + 100, 15, 20);
   pop();
 }
-//speed of balloon//
+//speed of balloon, if crash too hard, game lost. Otherwise, you win. Controls are in here//
 function gameScreen() {
   gameBackground(xBackground, yBackground);
   balloon(xBalloonAxis, yBalloonAxis);
@@ -143,8 +143,9 @@ function gameScreen() {
       state = "winScreen";
     }
   }
-  //sun//
+
   function gameBackground(x, y) {
+    //sun//
     background(46, 68, 130);
     fill(253, 184, 19);
     noStroke();
@@ -229,6 +230,7 @@ function gameScreen() {
     goalBlack(x + 140, y);
   }
 }
+//diffrent screens states and layout//
 function startScreen() {
   background(46, 68, 130);
   textSize(30);
@@ -255,6 +257,7 @@ function lostScreen() {
 }
 let state = startScreenState;
 
+//when you reset screen with spacebar, the text under will make the balloon start on the same point.//
 function resetGame() {
   if (keyIsDown(spaceBar)) {
     state = "gameScreen";
@@ -270,6 +273,7 @@ function resetGame() {
   acceleration = 0.2;
   isGameActive = true;
 }
+//function draw states, checks all the time which state of the game is, and which screen to use.//
 function draw() {
   if (state === startScreenState) {
     startScreen();
