@@ -1,7 +1,10 @@
+//Setup is for creting the frame for the game + Framerate//
 function setup() {
   createCanvas(800, 480);
   frameRate(35);
 }
+
+//All the Let's and Const's in the beginning
 let xBalloonAxis = 100;
 let xBackground = 100;
 let yBalloonAxis = 100;
@@ -22,6 +25,7 @@ const xPosTrees = 630;
 const yPosTrees = 560;
 const xPosGoal = 631;
 const yPosGoal = 629;
+
 function balloon(x, y) {
   push();
   scale(0.6);
