@@ -2,17 +2,22 @@ function setup() {
   createCanvas(800, 480);
   frameRate(35);
 }
-let xBalloon = 100;
+let xBalloonAxis = 100;
 let xBackground = 100;
-let yBalloon = 100;
+let yBalloonAxis = 100;
 let yBackground = 100;
-let speedX = 0;
-let speedY = 5;
+let speedBalloonX = 0;
+let speedBalloonY = 5;
 let velocity = 1;
 let isGameActive = true;
 const rightArrow = 39;
 const leftArrow = 37;
 const upArrow = 38;
+const spaceBar = 32;
+const startScreenState = "startScreen";
+const winScreenState = "winScreen";
+const lostScreenState = "lostScreen";
+const gameScreenState = "gameScreen";
 function balloon(x, y) {
   push();
   scale(0.6);
@@ -99,30 +104,30 @@ function balloon(x, y) {
 //speed of balloon//
 function gameScreen() {
   gameBackground(xBackground, yBackground);
-  balloon(xBalloon, yBalloon);
+  balloon(xBalloonAxis, yBalloonAxis);
 
   if (isGameActive) {
     if (keyIsDown(rightArrow)) {
-      speedX = 3;
+      speedBalloonX = 3;
     } else if (keyIsDown(leftArrow)) {
-      speedX = -3;
+      speedBalloonX = -3;
     } else if (keyIsDown(upArrow)) {
       velocity = velocity - 0.5;
     } else {
-      speedX = 0;
-      speedY = 0.1;
+      speedBalloonX = 0;
+      speedBalloonY = 0.1;
     }
-    xBalloon = xBalloon - 0.1;
-    yBalloon = yBalloon + velocity;
+    xBalloonAxis = xBalloonAxis - 0.1;
+    yBalloonAxis = yBalloonAxis + velocity;
     velocity = velocity + acceleration;
-    xBalloon = xBalloon + speedX;
-    yBalloon = yBalloon + speedY;
+    xBalloonAxis = xBalloonAxis + speedBalloonX;
+    yBalloonAxis = yBalloonAxis + speedBalloonY;
   }
-  if (yBalloon > 560 && xBalloon < 630) {
+  if (yBalloonAxis > 560 && xBalloonAxis < 630) {
     isGameActive = false;
     state = "lostScreen";
   }
-  if (yBalloon > 629 && xBalloon > 631) {
+  if (yBalloonAxis > 629 && xBalloonAxis > 631) {
     isGameActive = false;
     if (velocity > 3) {
       state = "lostScreen";
@@ -220,17 +225,17 @@ function startScreen() {
   background(46, 68, 130);
   textSize(30);
   text("Flying Balloon Game!", 250, 100);
-  text("Press SpaceBar to play!", 200, 150);
-  text("Control the Balloon with < ^ >", 210, 200);
-  text("Land smoothly on the checkers ground", 150, 250);
-  text("If you try to land in forest, you will crash!", 150, 300);
-  text("Press SpaceBar to play, Good Luck!", 170, 350);
+  text("Press SpaceBar to play!", 235, 150);
+  text("Control the Balloon with < ^ > keys!", 160, 200);
+  text("Land smoothly on the checkers ground.", 130, 250);
+  text("If you try to land in forest, you will crash!", 125, 300);
+  text("Press SpaceBar to play, Good Luck!", 150, 350);
 }
 
 function winScreen() {
   background(1, 50, 32);
   textSize(30);
-  text("You won!", 310, 200);
+  text("YOU WON!", 320, 200);
   text("Press SpaceBar to play again!", 200, 250);
 }
 
@@ -240,34 +245,33 @@ function lostScreen() {
   text("You crashed!", 310, 200);
   text("Press SpaceBar to play again!", 200, 250);
 }
-let state = "startScreen";
+let state = winScreenState;
 
 function resetGame() {
-  if (keyIsDown(32)) {
+  if (keyIsDown(spaceBar)) {
     state = "gameScreen";
   }
-  xBalloon = 100;
+  xBalloonAxis = 100;
   xBackground = 100;
-  yBalloon = 100;
+  yBalloonAxis = 100;
   yBackground = 100;
   y = 100;
-  rotation = 0;
-  speedX = 0;
-  speedY = 5;
+  speedBalloonX = 0;
+  speedBalloonY = 5;
   velocity = 1;
   acceleration = 0.2;
   isGameActive = true;
 }
 function draw() {
-  if (state === "startScreen") {
+  if (state === startScreenState) {
     startScreen();
     resetGame();
-  } else if (state === "gameScreen") {
+  } else if (state === gameScreenState) {
     gameScreen();
-  } else if (state === "winScreen") {
+  } else if (state === winScreenState) {
     winScreen();
     resetGame();
-  } else if (state === "lostScreen") {
+  } else if (state === lostScreenState) {
     lostScreen();
     resetGame();
   }
